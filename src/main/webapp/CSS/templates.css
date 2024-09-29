@@ -1,0 +1,40 @@
+.header {
+    /*background-color: #425e50; !* Тло хедера *!*/
+    padding: 10px 20px;     /* Внутрішні відступи */
+    display: flex;
+    justify-content: space-between; /* Простір між логотипом і правими посиланнями */
+    align-items: center;
+}
+
+/* Стиль для логотипу */
+.header .logo {
+    font-family: "Kyiv Region", cursive;
+    font-size: 24px;
+    color: #fae6cd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Стиль для правої частини хедера */
+.header-right a {
+    font-family: "Kyiv Region", cursive;
+
+    color: #fae6cd;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: inline-block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Стиль для активного елемента */
+.header-right a.active {
+    background-color: #fae6cd; /* Зелений фон для активного елемента */
+    color: black;
+}
+
+/* Стиль для ховера */
+.header-right a:hover {
+    background-color: #fae6cd;
+    color: black;
+}

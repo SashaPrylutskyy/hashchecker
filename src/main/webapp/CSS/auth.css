@@ -1,0 +1,58 @@
+body {
+    background: #96a57e;
+}
+
+.container {
+    width: 700px;
+
+    margin-top: 150px;
+    padding: 50px;
+
+    text-align: center;
+    font-family: "Kyiv Region", cursive;
+    color: #425e50;
+
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-top: 6px solid #425e50;
+    background-color: #fae6cd;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 450px;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"] {
+    background-color: #96a57e;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Kyiv Region", cursive;
+}
+
+input[type="submit"]:hover {
+    background-color: #576d5d;
+}
+
+.info a {
+    color: #da674a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.info a:hover {
+    text-decoration: underline;
+}
