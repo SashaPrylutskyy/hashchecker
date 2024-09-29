@@ -1,0 +1,145 @@
+body {
+    background: #96a57e;
+}
+
+.container {
+    width: 700px;
+
+    margin-top: 150px;
+
+    text-align: center;
+    font-family: "Kyiv Region", cursive;
+    font-size: 48px;
+    color: #fae6cd;
+
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container h1:hover {
+
+}
+
+.container a {
+    color: black;
+    text-decoration: none;
+
+    margin-top: 50px;
+    padding: 20px;
+
+    background-color: #425e50;
+    transition: color 0.19s;
+}
+
+.container a:hover {
+    color: #da674a;
+}
+
+/* header */
+/* Стиль для заголовка */
+.header {
+    background-color: #425e50; /* Тло хедера */
+    padding: 10px 20px;     /* Внутрішні відступи */
+    display: flex;
+    justify-content: space-between; /* Простір між логотипом і правими посиланнями */
+    align-items: center;
+}
+
+/* Стиль для логотипу */
+.header .logo {
+    font-family: "Kyiv Region", cursive;
+    font-size: 24px;
+    color: #fae6cd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Стиль для правої частини хедера */
+.header-right a {
+    font-family: "Kyiv Region", cursive;
+
+    color: #fae6cd;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: inline-block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Стиль для активного елемента */
+.header-right a.active {
+    background-color: #fae6cd; /* Зелений фон для активного елемента */
+    color: black;
+}
+
+/* Стиль для ховера */
+.header-right a:hover {
+    background-color: #fae6cd;
+    color: black;
+}
+
+/* record */
+
+.records {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #425e50;
+    padding: 15px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.record {
+    padding: 10px;
+    border-bottom: 1px solid #96a57e;
+}
+
+.record:last-child {
+    border-bottom: none;
+}
+
+.record a {
+    text-decoration: none;
+    color: #fae6cd;
+    display: flex; /* Вирівнюємо контент */
+}
+
+.record-content {
+    display: flex;
+    flex-direction: column; /* Розташування заголовку над іншими елементами */
+    justify-content: center;
+}
+
+h2.title {
+    font-family: "Kyiv Region", cursive;
+    font-size: 24px;
+    margin: 0;
+    color: #fae6cd;
+}
+
+.upload_time, .hashcode {
+    font-family: "Kyiv Region", cursive;
+    margin: 5px 0;
+    font-size: 16px;
+    color: #fae6cd;
+}
+
+.upload_time {
+    font-size: 14px; /* Менший шрифт для дати завантаження */
+    color: #d6d1c4;
+}
+
+.hashcode {
+    font-size: 14px; /* Менший шрифт для хеш-коду */
+    color: #d6d1c4;
+}
+
+/* Стиль для ховера на записах */
+.record a:hover {
+    background-color: #576d5d; /* Тло при наведенні */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
