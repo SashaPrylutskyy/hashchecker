@@ -26,13 +26,14 @@ function createFileDescription(file) {
     // Create a div for file description and progress bar
     listItem.innerHTML = `
             <div class="file-info">
-                <p><strong>${fileName}</strong></p>
-                <p>${sizeDisplay}</p>
+                <p class="left"><strong>${fileName}</strong></p>
+                <p class="right">${sizeDisplay}</p>
             </div>
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar-${file.name}">0%</div>
             </div>
-            <p id="hashOutput-${file.name}">Calculating hash...</p>
+            <p id="hashOutput-${file.name}">Calculating hash...</p><br>
+            <input class="submit-button" type="submit" value="ADD TO THE LIST" disabled id="submit-button-${file.name}">
         `;
     fileList.appendChild(listItem);
 }
@@ -46,6 +47,7 @@ function calculateHashWithProgress(file) {
 
     let progressBar = document.getElementById(`progress-bar-${file.name}`);
     let hashOutput = document.getElementById(`hashOutput-${file.name}`);
+    let submitButton = document.getElementById(`submit-button-${file.name}`);
 
     function readNextChunk() {
         let chunk = file.slice(offset, offset + chunkSize);
@@ -68,6 +70,9 @@ function calculateHashWithProgress(file) {
             // Finalize the hash and display it
             let hash = sha256.finalize().toString(CryptoJS.enc.Hex);
             hashOutput.textContent = `SHA-256: ${hash}`;
+
+            // Enable the submit button when the hash is calculated
+            submitButton.disabled = false;
         }
     };
 
