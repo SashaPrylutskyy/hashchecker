@@ -1,5 +1,5 @@
 .header {
-    /*background-color: #425e50; !* Тло хедера *!*/
+    background-color: #425e50; /* Тло хедера */
     padding: 10px 20px;     /* Внутрішні відступи */
     display: flex;
     justify-content: space-between; /* Простір між логотипом і правими посиланнями */

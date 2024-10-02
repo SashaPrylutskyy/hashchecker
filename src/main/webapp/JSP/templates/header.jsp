@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../CSS/style.css">
-    <link rel="stylesheet" href="../../CSS/templates.css">
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/templates.css">
 </head>
 <body>
 
 <div class="header">
-    <a href="/index.jsp" class="logo">Hash Checker</a>
+    <a href="/" class="logo">Hash Checker</a>
     <div class="header-right">
-        <a class="active" href="/index.jsp">Uploads</a>
+        <a class="active" href="/">Uploads</a>
         <a href="/upload">Upload</a>
         <a href="/logout">Log out</a>
     </div>

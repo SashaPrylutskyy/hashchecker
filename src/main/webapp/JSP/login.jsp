@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="../CSS/auth.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/auth.css">
 </head>
 <body>
+<%@ include file="templates/header.jsp"%>
 <div class="container">
     <h3>LOGIN</h3>
     <form action="/login" method="post">
@@ -15,7 +16,7 @@
     </form>
     <div class="info">
         <p>Don't have an account?</p>
-        <a href="/HTML/registration.html">registration</a>
+        <a href="/registration">registration</a>
     </div>
 </div>
 </body>

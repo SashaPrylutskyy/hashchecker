@@ -1,9 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="templates/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Hash checked | main</title>
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
 </head>
 <body>
 <div class="records">
@@ -26,7 +28,6 @@
             </div>
         </a>
     </div>
-
 </div>
 </body>
 </html>
