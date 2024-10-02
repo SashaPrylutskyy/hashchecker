@@ -17,6 +17,11 @@ public class RedirectServlet implements Filter {
 
         String uri = httpRequest.getRequestURI();
 
+        if (uri.startsWith("/CSS") || uri.startsWith("/JS") || uri.startsWith("/img")) {
+            filterChain.doFilter(request, response); // Пропустити запит для статичних файлів
+            return;
+        }
+
         switch (uri) {
             case "/":
                 httpRequest.getRequestDispatcher("/JSP/index.jsp").forward(request, response);
