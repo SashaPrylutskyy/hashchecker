@@ -11,7 +11,7 @@
 <div class="container">
     <h3>REGISTRATION</h3>
 
-    <h3 id="infoMessage"></h3>
+    <h2 id="infoMessage"></h2>
     <form id="registrationForm">
         <input type="text" id="email" name="email" placeholder="Enter an email"><br>
         <input type="password" id="password" name="password" placeholder="Enter a password"><br>
