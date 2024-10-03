@@ -1,11 +1,14 @@
-package com.sashaprylutskyy.hashchecker;
+package com.sashaprylutskyy.hashchecker.Servlets;
 
+import com.sashaprylutskyy.hashchecker.DatabaseDAO;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,8 +17,8 @@ public class RegistrationServlet extends HttpServlet {
     private final DatabaseDAO database = DatabaseDAO.getInstance();
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        database.connect("root", "");
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        database.connect();
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");

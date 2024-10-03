@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <h3>REGISTRATION</h3>
-    <form action="/registration" method="post">
+    <form action="registration" method="post">
         <input type="text" name="email" placeholder="Enter an email"><br>
         <input type="password" name="password" placeholder="Enter a password"><br>
         <input type="password" name="passwordRepeat" placeholder="Repeat the password"><br>

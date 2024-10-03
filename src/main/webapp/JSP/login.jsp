@@ -9,7 +9,7 @@
 <%@ include file="templates/header.jsp"%>
 <div class="container">
     <h3>LOGIN</h3>
-    <form action="/login" method="post">
+    <form action="login" method="post">
         <input type="text" name="email" placeholder="Enter an email"><br>
         <input type="password" name="password" placeholder="Enter a password"><br>
         <input type="submit" value="submit">

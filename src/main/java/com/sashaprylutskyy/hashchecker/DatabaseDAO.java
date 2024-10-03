@@ -16,12 +16,14 @@ public class DatabaseDAO {
         return instance;
     }
 
-    public void connect(String username, String password) {
+    public void connect() {
         final String URL = "jdbc:mysql://localhost:3306/hashchecker";
+        final String USERNAME = "root";
+        final String PASSWORD = "";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(URL, username, password);
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,6 +57,15 @@ public class DatabaseDAO {
 
         stmt = conn.prepareStatement(query);
         stmt.setString(1, email);
+        return stmt.executeQuery();
+    }
+
+    public ResultSet getUser(String email, String password) throws SQLException {
+        String query =  "SELECT * FROM users WHERE email = ? AND password = ?;";
+
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, email);
+        stmt.setString(2, password);
         return stmt.executeQuery();
     }
 }
