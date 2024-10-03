@@ -7,8 +7,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,29 +20,44 @@ public class RegistrationServlet extends HttpServlet {
     private final DatabaseDAO database = DatabaseDAO.getInstance();
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         database.connect();
 
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String passwordRepeat = request.getParameter("passwordRepeat");
+        PrintWriter out = response.getWriter();
+
+        BufferedReader reader = request.getReader();
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
+
+        String jsonData = sb.toString();
+        JSONObject jsonObject = new JSONObject(jsonData);
+
+        String email = jsonObject.getString("email");
+        String password = jsonObject.getString("password");
+        String hashed_password = DigestUtils.sha256Hex(password);
+
+        JSONObject jsonResponse = new JSONObject();
 
         if (isUserExists(email)) {
-            System.out.println("Email is already in taken");
-        }
-
-        else if (password.equals(passwordRepeat)) {
-            String hashed_password = DigestUtils.sha256Hex(password);
-
+            sendJSON(jsonResponse, out, "error", "Email is already in taken");
+        } else {
             try {
                 database.createUser(email, hashed_password);
-                System.out.println("Successfully registered. Please, login");
+                sendJSON(jsonResponse, out, "success", "Successfully registered. Please, login");
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                sendJSON(jsonResponse, out, "error", e.getMessage());
             }
-        } else {
-            System.out.println("passwords do not match");
         }
+    }
+
+    public void sendJSON(JSONObject jsonResponse, PrintWriter out, String status, String message) {
+        jsonResponse.put("status", status);
+        jsonResponse.put("message", message);
+        out.println(jsonResponse);
+        out.flush();
     }
 
     public boolean isUserExists(String email) {

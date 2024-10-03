@@ -37,6 +37,6 @@ public class RedirectFilter implements Filter {
     }
 
     private boolean isStaticResource(String uri) {
-        return uri.startsWith("/CSS") || uri.startsWith("/JS") || uri.startsWith("/img");
+        return uri.startsWith("/CSS") || uri.startsWith("/JS") || uri.startsWith("/libs") || uri.startsWith("/img");
     }
 }

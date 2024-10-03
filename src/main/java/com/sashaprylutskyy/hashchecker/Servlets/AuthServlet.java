@@ -27,7 +27,7 @@ public class AuthServlet extends HttpServlet {
 
             if (rs.next()) {
                 HttpSession loginSession = request.getSession(true);
-                loginSession.setAttribute("JSESSIONID", loginSession.getId());
+                loginSession.setAttribute("username", email);
                 response.sendRedirect("/");
             }
         } catch (Exception e) {

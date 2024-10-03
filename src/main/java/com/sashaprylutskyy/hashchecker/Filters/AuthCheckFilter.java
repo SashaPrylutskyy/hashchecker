@@ -17,7 +17,7 @@ public class AuthCheckFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("JSESSIONID") == null) {
+        if (session == null || session.getAttribute("username") == null) {
             response.sendRedirect("/login");
         } else {
             filterChain.doFilter(request, response);
