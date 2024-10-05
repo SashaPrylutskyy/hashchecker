@@ -68,4 +68,12 @@ public class DatabaseDAO {
         stmt.setString(2, password);
         return stmt.executeQuery();
     }
+
+    public int getUserID(String email) throws SQLException {
+        String query =  "SELECT id FROM users WHERE email = ?;";
+
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, email);
+        return stmt.executeQuery().getInt("id");
+    }
 }

@@ -21,6 +21,6 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-<script src="../JS/script.js"></script>
+<script src="${pageContext.request.contextPath}/JS/script.js"></script>
 </body>
 </html>

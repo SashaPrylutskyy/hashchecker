@@ -14,7 +14,7 @@ fileInput.addEventListener("change", () => {
 
 function createFileDescription(file) {
     let listItem = document.createElement("li");
-    let fileName = file.name;
+    // let fileName = file.name;
     let fileSize = (file.size / 1024).toFixed(1);
 
     // Display file size in MB if larger than 1024 KB
@@ -25,17 +25,49 @@ function createFileDescription(file) {
 
     // Create a div for file description and progress bar
     listItem.innerHTML = `
-            <div class="file-info">
-                <p class="left"><strong>${fileName}</strong></p>
-                <p class="right">${sizeDisplay}</p>
+            <div class="file-info" id="file-info-${file.name}">
+                <p class="left" id="file-name"><strong>${file.name}</strong></p>
+                <p class="right" id="file-size">${sizeDisplay}</p>
             </div>
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar-${file.name}">0%</div>
             </div>
             <p id="hashOutput-${file.name}">Calculating hash...</p><br>
-            <input class="submit-button" type="submit" value="ADD TO THE LIST" disabled id="submit-button-${file.name}">
+            <input class="submit-button" type="submit" value="SAVE TO THE LIST" disabled 
+                    id="submit-button-${file.name}" onclick="upload('${file.name}', ${fileSize})">
         `;
     fileList.appendChild(listItem);
+}
+
+function upload(fileName, fileSize) {
+    const hashOutputElement = document.getElementById("hashOutput-" + fileName).innerText.split(' ');
+    const hashcode = hashOutputElement[1];
+    const button = document.getElementById("submit-button-" + fileName);
+
+    fetch("/upload", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({fileName: fileName, hashcode: hashcode, fileSize: fileSize}),
+    })
+        .then(response => response.json())
+        .then(data => {
+            button.style.fontWeight = "bold";
+            button.style.color = " ";
+            button.disabled = true;
+
+            if (data.status === "success") {
+                button.innerText = "Saved";
+                button.style.backgroundColor = "#46fc9e3d";
+            }
+            else if (data.status === "failed") {
+                button.innerText = "Failed: " + data.message;
+                button.style.backgroundColor = "#da674a";
+            }
+        })
+        .catch(e => {
+            button.innerText = "Failed: " + e;
+            button.style.backgroundColor = "#da674a";
+        });
 }
 
 function calculateHashWithProgress(file) {
