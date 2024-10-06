@@ -68,7 +68,19 @@ public class DatabaseDAO {
         return stmt.executeQuery();
     }
 
-    public ResultSet getAllRecords(String user_email) throws SQLException {
+    public ResultSet getRecord (int recordID) throws SQLException {
+        String query = """
+                 SELECT * FROM hashchecker.records
+                 JOIN hashchecker.users
+                     ON hashchecker.users.id = hashchecker.records.userID
+                 WHERE hashchecker.records.id = ?;""";
+
+        stmt = conn.prepareStatement(query);
+        stmt.setInt(1, recordID);
+        return stmt.executeQuery();
+    }
+
+    public ResultSet getUserRecords(String user_email) throws SQLException {
         String query = """
                 SELECT * FROM hashchecker.records
                 JOIN hashchecker.users
@@ -79,6 +91,15 @@ public class DatabaseDAO {
         stmt.setString(1, user_email);
         return stmt.executeQuery();
     }
+
+    public void deleteRecord(int recordID) throws SQLException {
+        String query = "DELETE FROM records WHERE id = ?;";
+
+        stmt = conn.prepareStatement(query);
+        stmt.setInt(1, recordID);
+        stmt.executeUpdate();
+    }
+
 //    public ResultSet getAllUsers() throws SQLException {
 //
 //    }

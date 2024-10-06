@@ -1,0 +1,111 @@
+body {
+    background: #96a57e;
+    margin: 0;
+}
+
+.container {
+    width: 600px;
+    margin-top: 100px;
+    text-align: center;
+    font-family: "Kyiv Region", cursive;
+    font-size: 30px;
+    color: #fae6cd;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.file-details {
+    text-align: left;
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    background-color: #fae6cd;
+    border: 2px solid black;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.5s;
+    transition-property: opacity;
+}
+
+.file-details h2 {
+    font-family: "Kyiv Region", cursive;
+    font-size: 24px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.file-details p {
+    font-family: "Kyiv Region", cursive;
+    font-size: 16px;
+    color: black;
+    margin: 5px 0;
+}
+
+hr {
+    border: 1px solid black;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.buttons button {
+    font-family: "Kyiv Region", cursive;
+    background-color: black;
+    color: #fae6cd;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttons button:hover {
+    background-color: #333;
+}
+
+.check-btn {
+    background-color: #5d9b9b;
+}
+
+.check-btn:hover {
+    background-color: #468f8f;
+}
+
+.share-btn {
+    background-color: #8f5d5d;
+}
+
+.share-btn:hover {
+    background-color: #7b4949;
+}
+
+.delete-btn {
+    background-color: #d15d5d;
+}
+
+.delete-btn:hover {
+    background-color: #c04949;
+}
+
+/* Анімація видалення */
+@keyframes fadeOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.fade-out {
+    animation: fadeOutRight 2s forwards;
+}

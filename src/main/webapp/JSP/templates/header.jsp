@@ -18,7 +18,7 @@
     <div class="header">
         <a href="/" class="logo">Hash Checker</a>
         <div class="header-right">
-            <a href="#"><%= session.getAttribute("username").toString()%></a>
+            <a href="#"><%= session.getAttribute("username")    .toString()%></a>
             <a class="active" href="/">Uploads</a>
             <a href="/upload">Upload</a>
             <a href="/logout">Log out</a>

@@ -14,18 +14,21 @@
 <div class="records">
 <%
     session = request.getSession(false);
-    if (session == null || session.getAttribute("username") == null) { %>
+    if (session == null || session.getAttribute("username") == null) {
+%>
         <%@ include file="welcome.jsp"%>
-    <%} else {
+<%
+    } else {
         DatabaseDAO database = DatabaseDAO.getInstance();
         database.connect();
 
         String user_email = session.getAttribute("username").toString();
         try {
-            ResultSet rs = database.getAllRecords(user_email);
-            while (rs.next()) { %>
+            ResultSet rs = database.getUserRecords(user_email);
+            while (rs.next()) {
+%>
                 <div class="record">
-                    <a href="/record/<%= rs.getInt("id")%>">
+                    <a href="/record?id=<%= rs.getInt("id")%>">
                         <div class="record-content">
                             <h2 class="title"><%= rs.getString("title")%></h2>
     <%--                        <p class="upload_time">uploaded: 28.09.2024</p>--%>
@@ -33,8 +36,8 @@
                         </div>
                     </a>
                 </div>
-        <%  }
-
+<%
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
