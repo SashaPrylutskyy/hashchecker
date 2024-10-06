@@ -91,3 +91,19 @@ h2.title {
     border-left: 5px solid black;
     transition: 0.12s, box-shadow 0.1s;
 }
+
+.file-info {
+    display: flex;
+    width: 100%;
+}
+
+.left {
+    margin: 0;
+    flex: 1;
+    text-align: left;
+}
+
+.right {
+    margin: 0;
+    text-align: right;
+}

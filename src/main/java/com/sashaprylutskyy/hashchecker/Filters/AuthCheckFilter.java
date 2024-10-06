@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebFilter({"/upload", "/logout", "/upload"})
+@WebFilter({"/upload", "/logout"})
 public class AuthCheckFilter implements Filter {
 
     @Override

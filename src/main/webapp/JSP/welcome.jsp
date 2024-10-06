@@ -10,7 +10,7 @@
 
 <div class="container">
     <h1>Compare before you care</h1>
-    <a href="/">crosscheck</a>
+    <a href="/login">crosscheck</a>
 </div>
 
 <!--<div class="stats">-->

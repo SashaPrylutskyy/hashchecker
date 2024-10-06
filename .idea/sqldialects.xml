@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/5c0f910e-ab6e-4599-9c71-1c15506dcda7/console.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/sashaprylutskyy/hashchecker/DatabaseDAO.java" dialect="GenericSQL" />
   </component>
 </project>

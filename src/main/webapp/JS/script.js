@@ -42,7 +42,7 @@ function createFileDescription(file) {
 function upload(fileName, fileSize) {
     const hashOutputElement = document.getElementById("hashOutput-" + fileName).innerText.split(' ');
     const hashcode = hashOutputElement[1];
-    const button = document.getElementById("submit-button-" + fileName);
+    let button = document.getElementById("submit-button-" + fileName);
 
     fetch("/upload", {
         method: "POST",
@@ -52,20 +52,20 @@ function upload(fileName, fileSize) {
         .then(response => response.json())
         .then(data => {
             button.style.fontWeight = "bold";
-            button.style.color = " ";
+            button.style.color = "#3a3a3a";
             button.disabled = true;
 
             if (data.status === "success") {
-                button.innerText = "Saved";
+                button.textContent = "Saved";
                 button.style.backgroundColor = "#46fc9e3d";
             }
             else if (data.status === "failed") {
-                button.innerText = "Failed: " + data.message;
+                button.textContent = "Failed: " + data.message;
                 button.style.backgroundColor = "#da674a";
             }
         })
         .catch(e => {
-            button.innerText = "Failed: " + e;
+            button.textContent = "Failed: " + e;
             button.style.backgroundColor = "#da674a";
         });
 }

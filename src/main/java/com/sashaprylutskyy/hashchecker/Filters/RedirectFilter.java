@@ -18,7 +18,7 @@ public class RedirectFilter implements Filter {
         URL_MAPPINGS.put("/login", "login.jsp");
         URL_MAPPINGS.put("/registration", "registration.jsp");
         URL_MAPPINGS.put("/upload", "upload.jsp");
-        URL_MAPPINGS.put("/welcome", "welcome.jsp");
+//        URL_MAPPINGS.put("/welcome", "welcome.jsp");
     }
 
     @Override

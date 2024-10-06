@@ -43,8 +43,7 @@ public class DatabaseDAO {
     }
 
     public void createUser(String email, String hashed_password) throws SQLException {
-        String query =  "INSERT INTO users (email, password) " +
-                        "VALUES (?, ?);";
+        String query = "INSERT INTO users (email, password) VALUES (?, ?);";
 
         stmt = conn.prepareStatement(query);
         stmt.setString(1, email);
@@ -69,11 +68,18 @@ public class DatabaseDAO {
         return stmt.executeQuery();
     }
 
-    public int getUserID(String email) throws SQLException {
-        String query =  "SELECT id FROM users WHERE email = ?;";
+    public ResultSet getAllRecords(String user_email) throws SQLException {
+        String query = """
+                SELECT * FROM hashchecker.records
+                JOIN hashchecker.users
+                    ON hashchecker.users.id = hashchecker.records.userID
+                WHERE email = ?;""";
 
         stmt = conn.prepareStatement(query);
-        stmt.setString(1, email);
-        return stmt.executeQuery().getInt("id");
+        stmt.setString(1, user_email);
+        return stmt.executeQuery();
     }
+//    public ResultSet getAllUsers() throws SQLException {
+//
+//    }
 }
