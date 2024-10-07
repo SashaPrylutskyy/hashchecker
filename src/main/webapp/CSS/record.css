@@ -66,28 +66,21 @@ hr {
     transition: background-color 0.3s;
 }
 
-.buttons button:hover {
-    background-color: #333;
-}
-
 .check-btn {
     background-color: #5d9b9b;
+    width: 535px;
+}
+
+#progressBar {
+    background-color: #425e50;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
 }
 
 .check-btn:hover {
-    background-color: #468f8f;
-}
-
-.share-btn {
-    background-color: #8f5d5d;
-}
-
-.share-btn:hover {
-    background-color: #7b4949;
-}
-
-.delete-btn {
-    background-color: #d15d5d;
+    background-color: #333;
 }
 
 .delete-btn:hover {
@@ -102,7 +95,7 @@ hr {
     }
     100% {
         opacity: 0;
-        transform: translateX(100%);
+        transform: translateX(70%);
     }
 }
 
