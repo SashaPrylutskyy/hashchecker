@@ -68,6 +68,15 @@ public class DatabaseDAO {
         return stmt.executeQuery();
     }
 
+    public void deleteUser(String email, String password) throws SQLException {
+        String query = "DELETE FROM users WHERE email = ? AND password = ?;";
+
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, email);
+        stmt.setString(2, password);
+        stmt.executeUpdate();
+    }
+
     public ResultSet getRecord (int recordID) throws SQLException {
         String query = """
                  SELECT * FROM hashchecker.records
