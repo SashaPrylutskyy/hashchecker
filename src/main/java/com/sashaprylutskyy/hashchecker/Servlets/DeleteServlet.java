@@ -1,6 +1,7 @@
 package com.sashaprylutskyy.hashchecker.Servlets;
 
 import com.sashaprylutskyy.hashchecker.DatabaseDAO;
+import com.sashaprylutskyy.hashchecker.FetchAPIService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,21 +16,12 @@ import java.io.PrintWriter;
 public class DeleteServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //search for these code snippets and optimize the duplicates
         DatabaseDAO database = DatabaseDAO.getInstance();
         database.connect();
 
         PrintWriter out = response.getWriter();
 
-        BufferedReader reader = request.getReader();
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line);
-        }
-
-        String jsonData = sb.toString();
-        JSONObject jsonObject = new JSONObject(jsonData);
+        JSONObject jsonObject = FetchAPIService.getJsonObj(request, response);
         int recordID = jsonObject.getInt("recordID");
 
         JSONObject jsonResponse = new JSONObject();

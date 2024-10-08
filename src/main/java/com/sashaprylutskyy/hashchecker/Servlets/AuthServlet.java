@@ -1,6 +1,7 @@
 package com.sashaprylutskyy.hashchecker.Servlets;
 
 import com.sashaprylutskyy.hashchecker.DatabaseDAO;
+import com.sashaprylutskyy.hashchecker.FetchAPIService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,16 +25,7 @@ public class AuthServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        BufferedReader reader = request.getReader();
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line);
-        }
-
-        String jsonData = sb.toString();
-        JSONObject jsonObject = new JSONObject(jsonData);
-
+        JSONObject jsonObject = FetchAPIService.getJsonObj(request, response);
         String email = jsonObject.getString("email");
         String password = jsonObject.getString("password");
 
@@ -57,7 +49,8 @@ public class AuthServlet extends HttpServlet {
                 out.flush();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            jsonResponse.put("status", "error");
+            jsonResponse.put("message", "Couldn't reach the database");
         }
 
     }

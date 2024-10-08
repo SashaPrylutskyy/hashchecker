@@ -1,6 +1,7 @@
 package com.sashaprylutskyy.hashchecker.Servlets;
 
 import com.sashaprylutskyy.hashchecker.DatabaseDAO;
+import com.sashaprylutskyy.hashchecker.FetchAPIService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,26 +22,14 @@ public class UploadServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         database.connect();
 
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
         HttpSession session = request.getSession(false);
         String email = session.getAttribute("username").toString();
 
         PrintWriter out = response.getWriter();
 
-        BufferedReader reader = request.getReader();
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line);
-        }
-
-        String jsonData = sb.toString();
-        JSONObject jsonObject = new JSONObject(jsonData);
-
-        String fileName = jsonObject.getString("fileName");
+        JSONObject jsonObject = FetchAPIService.getJsonObj(request, response);
         String hashcode = jsonObject.getString("hashcode");
+        String fileName = jsonObject.getString("fileName");
         int fileSize = jsonObject.getInt("fileSize");
 
         JSONObject jsonResponse = new JSONObject();
