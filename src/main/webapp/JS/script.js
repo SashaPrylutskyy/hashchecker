@@ -25,6 +25,7 @@ function createFileDescription(file) {
 
     // Create a div for file description and progress bar
     listItem.innerHTML = `
+        <div class="content">
             <div class="file-info" id="file-info-${file.name}">
                 <p class="left" id="file-name"><strong>${file.name}</strong></p>
                 <p class="right" id="file-size">${sizeDisplay}</p>
@@ -35,6 +36,7 @@ function createFileDescription(file) {
             <p id="hashOutput-${file.name}">Calculating hash...</p><br>
             <input class="submit-button" type="submit" value="SAVE TO THE LIST" disabled 
                     id="submit-button-${file.name}" onclick="upload('${file.name}', ${fileSize})">
+        </div>
         `;
     fileList.appendChild(listItem);
 }

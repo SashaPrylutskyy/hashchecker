@@ -11,13 +11,14 @@ body {
 
     text-align: center;
     font-family: "Kyiv Region", cursive;
-    color: #425e50;
+    color: black;
 
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
 
-    border-top: 6px solid #425e50;
+    border: 2px solid black;
+    border-radius: 10px;
     background-color: #fae6cd;
 }
 
@@ -31,13 +32,18 @@ input[type="text"], input[type="password"] {
     padding: 10px;
     margin: 10px 0;
     border: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fae6cd;
+    border-bottom: 2px solid black;
 }
 
 input[type="submit"] {
-    background-color: #96a57e;
-    color: white;
-    padding: 10px 15px;
+    margin-top: 20px;
+    width: 100%;
+    background-color: black;
+    color: #fae6cd;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -48,6 +54,15 @@ input[type="submit"]:hover {
     background-color: #576d5d;
 }
 
+input:focus {
+    outline: none;
+    border-bottom: 2px solid #375fad;
+}
+
+input[type="submit"]:focus {
+    border: none;
+}
+
 .info a {
     color: #da674a;
     text-decoration: none;
@@ -56,4 +71,27 @@ input[type="submit"]:hover {
 
 .info a:hover {
     text-decoration: underline;
+}
+
+.container h2 {
+    font-family: "Fixel Text Medium", cursive;
+    font-size: 18px;
+    /*display: none;*/
+
+    transition-duration: 0.4s;
+    transition-property: display;
+}
+
+.error {
+    border: 2px solid red;
+}
+.error h2 {
+    color: red;
+}
+
+.success {
+    border: 2px solid green;
+}
+.success h2 {
+    color: green;
 }

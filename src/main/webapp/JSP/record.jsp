@@ -45,7 +45,7 @@
                 }
 %>
                 <div id="file-details" class="file-details">
-                    <h2>File: <%= rs.getString("title")%>></h2>
+                    <h2>File: <%= rs.getString("title")%></h2>
                     <p><strong><%= sizeDisplay%></strong></p>
                     <hr>
                     <p><strong>Uploaded by:</strong> <%= rs.getString("email")%></p>
@@ -72,8 +72,8 @@
                 </div>
 <%
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            out.print("Unexpected error occured | Couldn't reach the database");
         }
     }
 %>
@@ -82,6 +82,7 @@
 <script>
     function deleteRecord() {
         const fileDetails = document.getElementById("file-details");
+        const progressBar = document.getElementById('crosscheck-info');
 
         const urlParams = new URLSearchParams(window.location.search);
         const recordID = urlParams.get("id");
@@ -95,15 +96,19 @@
             .then(data => {
                 if (data.status === "success") {
                     fileDetails.classList.add("fade-out");
+                    progressBar.classList.add("fade-out");
 
                     setTimeout(function () {
                         fileDetails.style.display = "none";
-                    }, 2000);
+                        progressBar.style.display = "none";
+                    }, 1000);
                 } else {
                     document.getElementById("info-message").innerText = "Error";
                 }
             })
-            .catch(e => console.error(e));
+            .catch(e => {
+                out.print("Unexpected error occured | Couldn't reach the database");
+            });
     }
 
     function checkHashCode() {
@@ -119,7 +124,6 @@
         const crosscheckInfo = document.getElementById("crosscheck-info");
         crosscheckInfo.style.display = 'block';
         progressBar.value = 0;
-        // document.getElementById('hashOutput').textContent = ''; // Clear previous hash output
 
         const reader = new FileReader();
         const chunkSize = 1024 * 1024; // 1MB chunk size

@@ -16,7 +16,11 @@
     session = request.getSession(false);
     if (session == null || session.getAttribute("username") == null) {
 %>
-        <%@ include file="welcome.jsp"%>
+        <div class="container">
+            <h1>DON'T BE FOOLED</h1>
+            <hr>
+            <h2>COMPARE BEFORE YOU CARE!</h2>
+        </div>
 <%
     } else {
         DatabaseDAO database = DatabaseDAO.getInstance();
@@ -39,7 +43,11 @@
 <%
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+%>          <div class="container">
+                <h5 style="color: darkred; ">Couldn't reach database</h5>
+            </div>
+
+<%
         }
     }
 %>

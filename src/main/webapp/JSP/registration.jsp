@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/auth.css">
 </head>
 <body>
-<div class="container">
+<div id="container" class="container">
     <h3>REGISTRATION</h3>
 
     <h2 id="infoMessage"></h2>
-    <form id="registrationForm">
-        <input type="text" id="email" name="email" placeholder="Enter an email"><br>
-        <input type="password" id="password" name="password" placeholder="Enter a password"><br>
-        <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat the password"><br>
-        <input type="submit" value="submit" onclick="createUser()">
+    <form id="registrationForm" onsubmit="createUser(event)">
+        <input type="text" id="email" name="email" placeholder="Enter an email" pattern=".+@.+.+" required><br>
+        <input type="password" id="password" name="password" placeholder="Enter a password" pattern=".{8,}" required><br>
+        <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat the password" pattern=".{8,}" required><br>
+        <input type="submit" value="submit">
     </form>
     <div class="info">
         <p>Have an account?</p>
@@ -30,10 +30,13 @@
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
         let passwordRepeat = document.getElementById("passwordRepeat").value;
+        let container = document.getElementById("container");
+        let infoMessage = document.getElementById("infoMessage");
 
         if (password !== passwordRepeat) {
-            document.getElementById("infoMessage").style.color = "red";
-            document.getElementById("infoMessage").innerHTML = "Passwords don't match";
+            container.classList.add("error");
+            container.style.display = "block";
+            infoMessage.innerHTML = "Passwords don't match";
         } else {
             fetch("/registration", {
                 method: 'POST',
@@ -43,16 +46,23 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === "error") {
-                        document.getElementById("infoMessage").style.color = "red";
+                        container.style.display = "block";
                     } else if (data.status === "success") {
                         document.getElementById("email").innerHTML = "";
                         document.getElementById("password").innerHTML = "";
                         document.getElementById("passwordRepeat").innerHTML = "";
-                        document.getElementById("infoMessage").style.color = "#425e50";
+
+                        container.classList.add("success");
+                        infoMessage.innerHTML = data.message;
                     }
-                    document.getElementById("infoMessage").innerHTML = data.message;
+                    container.classList.add("error");
+                    infoMessage.innerHTML = data.message;
                 })
-                .catch(e => console.error(e));
+                .catch(e => {
+                    container.style.display = "block";
+                    container.classList.add("error");
+                    infoMessage.innerHTML = "Couldn't reach the database";
+                });
         }
     }
 </script>

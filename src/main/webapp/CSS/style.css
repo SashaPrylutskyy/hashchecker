@@ -4,40 +4,27 @@ body {
 }
 
 .container {
-    width: 700px;
-
+    width: 900px;
     margin-top: 150px;
 
     text-align: center;
     font-family: "Kyiv Region", cursive;
-    font-size: 48px;
     color: #fae6cd;
-
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
 }
-
-.container h1:hover {
-
+.container h1 {
+    font-size: 50px;
 }
-
-.container a {
-    color: black;
-    text-decoration: none;
-
-    margin-top: 50px;
-    padding: 20px;
-
-    background-color: #425e50;
-    transition: color 0.19s;
+.container h2 {
+    font-size: 28px;
+    font-family: 'Fixel Text Medium', cursive;
 }
-
-.container a:hover {
-    color: #da674a;
+.container hr {
+    margin: 0;
+    border: 2px solid #c04949;
 }
-
-/* record */
 
 .records {
     margin-top: 20px;

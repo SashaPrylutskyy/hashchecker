@@ -100,5 +100,5 @@ hr {
 }
 
 .fade-out {
-    animation: fadeOutRight 2s forwards;
+    animation: fadeOutRight 1s forwards;
 }
