@@ -1,11 +1,15 @@
 package com.sashaprylutskyy.hashchecker;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.sql.*;
 
 public class DatabaseDAO {
     private static DatabaseDAO instance;
     private Connection conn;
     private PreparedStatement stmt;
+
+//    Dotenv env = Dotenv.load();
 
     private DatabaseDAO() {}
 
@@ -17,9 +21,13 @@ public class DatabaseDAO {
     }
 
     public void connect() {
-        final String URL = "jdbc:mysql://localhost:3306/hashchecker";
+//        final String URL = env.get("DATABASE_URL") + env.get("MYSQL_DATABASE");
+//        final String USERNAME = env.get("MYSQL_USERNAME");
+//        final String PASSWORD = env.get("MYSQL_ROOT_PASSWORD");
+
+        final String URL = "jdbc:mysql://mysql:3306/hashchecker";
         final String USERNAME = "root";
-        final String PASSWORD = "";
+        final String PASSWORD = "root101";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -101,6 +109,7 @@ public class DatabaseDAO {
         return stmt.executeQuery();
     }
 
+    //TODO
     public void deleteRecord(int recordID) throws SQLException {
         String query = "DELETE FROM records WHERE id = ?;";
 
